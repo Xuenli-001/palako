@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio | Sakha</title>
+    <title>Portofolio Akademik | Muhammad Sakha Alfarizy</title>
     <style>
         /* Pengaturan Tema dan Warna */
         :root { 
@@ -13,6 +13,9 @@
             --accent: #38bdf8; 
             --card-bg: #1e293b; 
             --card-border: #334155;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --error: #f87171;
         }
 
         /* Reset Dasar */
@@ -24,7 +27,7 @@
             line-height: 1.6; 
         }
 
-        /* Bagian Header (Hero Section) */
+        /* Bagian Header (Hero Section) di Tengah */
         header { 
             padding: 5rem 2rem; 
             text-align: center; 
@@ -32,62 +35,71 @@
             background: linear-gradient(180deg, #020617 0%, var(--bg-color) 100%);
         }
         header h1 { 
-            font-size: 3.5rem; 
+            font-size: 3rem; 
             margin: 0; 
-            color: var(--accent); 
-            letter-spacing: 2px;
+            color: var(--text-main); 
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+        header .npm {
+            font-size: 1.4rem;
+            color: var(--accent);
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 0.5rem;
+            font-weight: bold;
         }
         header p.subtitle { 
-            font-size: 1.2rem; 
+            font-size: 1.1rem; 
             color: var(--text-muted); 
             max-width: 600px;
-            margin: 1rem auto 0 auto;
+            margin: 1.5rem auto 0 auto;
         }
 
         /* Container Utama */
         .container { 
             max-width: 1000px; 
             margin: 0 auto; 
-            padding: 3rem 2rem; 
+            padding: 2rem 2rem; 
         }
         
         h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
+            margin-top: 2rem;
             margin-bottom: 1.5rem;
             border-left: 4px solid var(--accent);
             padding-left: 10px;
         }
 
         p.about-text {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #cbd5e1;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         /* Grid Layout untuk Kartu Proyek */
         .grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 2rem; 
+            gap: 1.5rem; 
         }
 
         /* Desain Kartu (Card) */
         .card { 
             background-color: var(--card-bg); 
-            padding: 1.8rem; 
+            padding: 1.5rem; 
             border-radius: 12px; 
             border: 1px solid var(--card-border); 
             transition: all 0.3s ease; 
         }
         .card:hover { 
-            transform: translateY(-8px); 
+            transform: translateY(-5px); 
             border-color: var(--accent); 
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.1);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.08);
         }
         .card h3 { 
             margin-top: 0; 
             color: var(--text-main); 
-            font-size: 1.4rem;
+            font-size: 1.3rem;
         }
         .card p {
             color: var(--text-muted);
@@ -99,8 +111,236 @@
             display: flex; 
             gap: 0.5rem; 
             flex-wrap: wrap; 
-            margin-top: 1.5rem; 
+            margin-top: 1.2rem; 
         }
         .tag { 
             background-color: #0c4a6e; 
-            color: #
+            color: #7dd3fc; 
+            padding: 0.25rem 0.7rem; 
+            border-radius: 20px; 
+            font-size: 0.75rem; 
+            font-weight: bold;
+        }
+
+        /* --- Styling untuk Game Sederhana --- */
+        .game-area {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .game-controls {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        input[type="number"] {
+            background-color: #020617;
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 120px;
+            text-align: center;
+        }
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        button.game-btn {
+            background-color: var(--accent);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: opacity 0.2s;
+        }
+        button.game-btn:hover {
+            opacity: 0.8;
+        }
+        button.game-btn:disabled {
+            background-color: var(--card-border);
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+        #gameFeedback {
+            margin-top: 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-height: 1.6em; /* Mencegah layout shift */
+        }
+
+        /* Bagian Footer */
+        footer { 
+            text-align: center; 
+            padding: 2rem; 
+            color: var(--text-muted); 
+            border-top: 1px solid var(--card-border);
+            margin-top: 3rem;
+            font-size: 0.85rem;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Responsif untuk HP */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            header .npm { font-size: 1.1rem; }
+            .container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Muhammad Sakha Alfarizy</h1>
+        <div class="npm">NPM: 2410631170093</div>
+        <p class="subtitle">Mahasiswa S1 Informatika | Python Developer & IoT Enthusiast</p>
+    </header>
+
+    <div class="container">
+        
+        <h2>Tentang Saya</h2>
+        <p class="about-text">
+            Halo! Saya adalah seorang mahasiswa Informatika yang gemar mengulik logika sistem dan pemrograman. Fokus saya saat ini adalah mengembangkan otomasi perangkat lunak, merancang simulasi perangkat keras pintar, dan mendalami analisis algoritma untuk memecahkan masalah dengan efisien.
+        </p>
+
+        <h2>Uji Logika: Tebak Angka (1-100)</h2>
+        <div class="card game-area">
+            <h3>Coba tebak angka yang sedang saya pikirkan!</h3>
+            <p style="color: var(--text-muted); margin-top: 0;">Masukkan angka antara 1 sampai 100.</p>
+            
+            <div class="game-controls">
+                <input type="number" id="guessInput" min="1" max="100" placeholder="00">
+                <button class="game-btn" id="guessBtn" onclick="checkGuess()">Tebak</button>
+                <button class="game-btn" id="resetBtn" onclick="resetGame()" style="background-color: var(--card-border); color: var(--text-main); display: none;">Main Lagi</button>
+            </div>
+            
+            <div id="gameFeedback"></div>
+        </div>
+
+        <h2>Eksplorasi & Proyek Akademik</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <h3>Automated Trading Bot</h3>
+                <p>Membangun dan mengembangkan bot otomasi kripto menggunakan Python. Berpengalaman mengelola integrasi Open API dan mengeksekusi sistem backtesting berbasis data historis koin (seperti HYPE) menggunakan indikator teknikal.</p>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">API Integration</span>
+                    <span class="tag">Data Logic</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Simulasi IoT Hardware</h3>
+                <p>Merancang bangun purwarupa perangkat keras cerdas, seperti Sistem Penghitung Pengunjung Ruangan Otomatis, menggunakan mikrokontroler Arduino yang divalidasi melalui sirkuit Proteus.</p>
+                <div class="tags">
+                    <span class="tag">Arduino</span>
+                    <span class="tag">Proteus</span>
+                    <span class="tag">C++</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Analisis Logika Akademik</h3>
+                <p>Mengimplementasikan berbagai teori komputasi untuk penyelesaian kasus, mulai dari probabilitas statistik dengan metode Naïve Bayes, hingga perhitungan kompleksitas algoritma menggunakan notasi Big Theta.</p>
+                <div class="tags">
+                    <span class="tag">Algorithms</span>
+                    <span class="tag">Statistics</span>
+                    <span class="tag">OS Architecture</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Muhammad Sakha Alfarizy. Dideploy secara otomatis via Cloudflare Pages.</p>
+    </footer>
+
+    <script>
+        // Inisialisasi variabel game
+        let targetNumber;
+        let attempts;
+        
+        const inputDom = document.getElementById('guessInput');
+        const feedbackDom = document.getElementById('gameFeedback');
+        const guessBtnDom = document.getElementById('guessBtn');
+        const resetBtnDom = document.getElementById('resetBtn');
+
+        // Fungsi untuk memulai/mereset game
+        function resetGame() {
+            targetNumber = Math.floor(Math.random() * 100) + 1; // Angka acak 1-100
+            attempts = 0;
+            
+            inputDom.value = '';
+            inputDom.disabled = false;
+            
+            feedbackDom.innerText = "Game dimulai! Semoga beruntung.";
+            feedbackDom.style.color = var(--text-muted);
+            
+            guessBtnDom.style.display = "inline-block";
+            resetBtnDom.style.display = "none";
+            inputDom.focus();
+        }
+
+        // Fungsi utama mengecek tebakan
+        function checkGuess() {
+            const userGuess = parseInt(inputDom.value);
+            attempts++;
+
+            // Validasi input
+            if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+                feedbackDom.innerText = "⚠️ Masukkan angka valid (1-100)!";
+                feedbackDom.style.color = var(--error);
+                inputDom.value = '';
+                inputDom.focus();
+                return;
+            }
+
+            // Logika pengecekan
+            if (userGuess === targetNumber) {
+                // Menang
+                feedbackDom.innerText = `🎉 TEPAT! Anda berhasil menebak angka ${targetNumber} dalam ${attempts} percobaan.`;
+                feedbackDom.style.color = var(--success);
+                endGame();
+            } else if (userGuess > targetNumber) {
+                // Terlalu Tinggi
+                feedbackDom.innerText = `❌ Terlalu TINGGI. (Tebakan ke-${attempts})`;
+                feedbackDom.style.color = var(--warning);
+                inputDom.value = '';
+                inputDom.focus();
+            } else {
+                // Terlalu Rendah
+                feedbackDom.innerText = `❌ Terlalu RENDAH. (Tebakan ke-${attempts})`;
+                feedbackDom.style.color = var(--warning);
+                inputDom.value = '';
+                inputDom.focus();
+            }
+        }
+
+        // Fungsi saat game berakhir (menang)
+        function endGame() {
+            inputDom.disabled = true;
+            guessBtnDom.style.display = "none";
+            resetBtnDom.style.display = "inline-block";
+        }
+
+        // Memulai game saat halaman dimuat
+        window.onload = resetGame;
+        
+        // Memungkinkan menekan 'Enter' untuk menebak
+        inputDom.addEventListener("keypress", function(event) {
+            if (event.key === "Enter" && !inputDom.disabled) {
+                checkGuess();
+            }
+        });
+    </script>
+
+</body>
+</html>
